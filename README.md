@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 ![Tic Tac Toe](https://github.com/catherineisonline/tic-tac-toe/blob/main/src/assets/images/project-preview.png?raw=true)
 # Tic Tac Toe
@@ -42,3 +43,6 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+=======
+# tic-tac-toe
+>>>>>>> eb80a70b5bb9b3f42b103a98701cc388b639b24c
