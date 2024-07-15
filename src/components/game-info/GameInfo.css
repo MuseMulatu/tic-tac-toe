@@ -1,0 +1,37 @@
+
+.star-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to pass through */
+    overflow: hidden;
+    z-index: 999; /* Make sure it's on top */
+    display: none; /* Hidden by default */
+  }
+  
+  .star-animation.active {
+    display: block; /* Show when active */
+  }
+  
+  .star {
+    position: absolute;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    background: url('../../assets/images/tiny.png') no-repeat center center;
+    background-size: contain;
+    animation: fall 6s linear forwards; /* Use forwards to retain end state */
+  }
+  
+  @keyframes fall {
+    0% {
+      transform: translateY(-200px); /* Start off-screen */
+    }
+    100% {
+      transform: translateY(100vh); /* End off-screen */
+      opacity: 0;
+    }
+  }
+  

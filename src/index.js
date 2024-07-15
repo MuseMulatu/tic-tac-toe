@@ -1,14 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import calculateWinner from './helpers/calculateWinner'
-import Board from './components/board/Board'
-import GameInfo from './components/game-info/GameInfo'
+import calculateWinner from './helpers/calculateWinner';
+import Board from './components/board/Board';
+import GameInfo from './components/game-info/GameInfo';
 
 class Game extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       history: [
         {
@@ -17,17 +17,17 @@ class Game extends React.Component {
       ],
       stepNumber: 0,
       xIsNext: true,
-    }
+    };
   }
 
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1)
-    const current = history[history.length - 1]
-    const squares = current.squares.slice()
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const current = history[history.length - 1];
+    const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
-      return
+      return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O'
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       history: history.concat([
         {
@@ -36,26 +36,28 @@ class Game extends React.Component {
       ]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
-    })
+    });
   }
 
   jumpTo(step) {
-    console.log(step)
+    console.log(step);
     this.setState({
       stepNumber: step,
       xIsNext: step % 2 === 0,
-    })
+    });
   }
 
   render() {
-    const history = this.state.history
-    const current = history[this.state.stepNumber]
-    const winner = calculateWinner(current.squares)
-    let status
+    const history = this.state.history;
+    const current = history[this.state.stepNumber];
+    const winner = calculateWinner(current.squares);
+    const moves = this.state.stepNumber; // Number of moves made so far
+
+    let status;
     if (winner) {
-      status = 'Winner: ' + winner
+      status = 'Winner: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
     return (
       <React.Fragment>
@@ -65,6 +67,7 @@ class Game extends React.Component {
             status={status}
             winner={winner}
             xIsNext={this.state.xIsNext}
+            moves={moves}
           />
           <Board
             squares={current.squares}
@@ -73,13 +76,15 @@ class Game extends React.Component {
           />
         </section>
       </React.Fragment>
-    )
+    );
   }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<Router basename={process.env.REACT_APP_URI}>
-  <Routes>
-    <Route path="/tic-tac-toe" element={<Game />} />
-  </Routes>
-</Router>)
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <Router basename={process.env.REACT_APP_URI}>
+    <Routes>
+      <Route path="/tic-tac-toe" element={<Game />} />
+    </Routes>
+  </Router>
+);

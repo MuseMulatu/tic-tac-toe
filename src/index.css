@@ -293,3 +293,33 @@ h1 {
     margin-bottom: 3rem;
   }
 }
+
+.draw-message {
+  position: fixed; /* Position the message over the entire screen */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Centering trick */
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  color: white; /* White text color */
+  padding: 20px; /* Padding around the text */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center; /* Center the text */
+  font-family: var(--game-font);
+  font-size: 2rem; /* Large font size */
+  z-index: 1000; /* Ensure it is above other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add some shadow for emphasis */
+}
+
+/* Optional: Add some animation for the message to appear smoothly */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.draw-message {
+  animation: fadeIn 0.5s ease-in-out;
+}
